@@ -6,21 +6,24 @@ import org.sid.serviceclient.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClientParticulierImpl  {
-
+@Autowired
   ClientParticulierRepository clientParticulierRepository;
-
+    @Transactional
     public Client_Particulier saveClient(Client_Particulier newClient) {
         return clientParticulierRepository.save(newClient);
     }
 
+    @Transactional
 
     public void deleteClient(Long id) {
         clientParticulierRepository.deleteById(id);
     }
 
+    @Transactional
 
     public Client_Particulier updateClient(Long id, Client_Particulier updatedClient) {
         Client_Particulier oldClient = clientParticulierRepository.findById(id)
@@ -37,7 +40,7 @@ public class ClientParticulierImpl  {
         return oldClient;
     }
 
-
+    @Transactional
     public Client_Particulier getClientById(Long id) {
         return  clientParticulierRepository.findById(id).get();
     }
